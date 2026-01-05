@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Для тебя</title>
+    <style>
+        body {
+            margin: 0;
+            background: #ffffff; /* Белый фон */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Фото цветка */
+        .flower-photo {
+            width: 300px; /* Размер фото */
+            height: auto;
+            border-radius: 20px;
+            /* Без анимации, как ты и просил */
+            margin-bottom: 20px;
+            z-index: 5;
+        }
+
+        .message {
+            text-align: center;
+            z-index: 10;
+        }
+
+        h1 {
+            font-weight: 300;
+            font-size: 22px;
+            margin: 0;
+            color: #444;
+        }
+
+        .name {
+            display: block;
+            font-size: 45px;
+            color: #d00000;
+            font-weight: bold;
+            margin-top: 10px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+        }
+
+        /* Летающие сердечки */
+        .heart {
+            position: absolute;
+            color: #ff4d6d;
+            pointer-events: none;
+            z-index: 1;
+            animation: fly linear forwards;
+        }
+
+        @keyframes fly {
+            0% { transform: translateY(105vh) scale(0.5); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <img src="https://images.unsplash.com/photo-1559563458-527698bf5295?q=80&w=1000&auto=format&fit=crop" alt="Rose" class="flower-photo">
+
+    <div class="message">
+        <h1>Это цветок для</h1>
+        <span id="girlName" class="name"></span>
+    </div>
+
+    <script>
+        // ==========================================
+        // ВПИШИ ИМЯ МЕЖДУ КАВЫЧЕК НИЖЕ:
+        const currentName = "ИМЯ"; 
+        // ==========================================
+
+        document.getElementById('girlName').innerText = currentName;
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+</body>
+  </html>
+  
